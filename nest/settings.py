@@ -80,10 +80,10 @@ WSGI_APPLICATION = 'nest.wsgi.application'
 # Database
 DATABASES = {'default': {}}
 
-if 'ON_HEROKU' in os.environ:
-    DATABASES['default'].update(dj_database_url.config(conn_max_age=500, ssl_require=True))
-else:
-    DATABASES['default'].update(dj_database_url.config())
+# if 'ON_HEROKU' in os.environ:
+#     DATABASES['default'].update(dj_database_url.config(conn_max_age=500, ssl_require=True))
+# else:
+#     DATABASES['default'].update(dj_database_url.config())
 
 
 # Password validation
@@ -120,4 +120,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
+
 STATIC_URL = '/static/'
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# Extra places for collectstatic to find static files.
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
