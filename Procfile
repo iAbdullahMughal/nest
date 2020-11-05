@@ -1,1 +1,1 @@
-web: gunicorn nest.wsgi 
+web: gunicorn nest.wsgi
