@@ -1,7 +1,5 @@
-from django.http import HttpResponse
-from django.shortcuts import render
-
-
+from django.http import HttpResponse, JsonResponse
+import json
 # Create your views here.
 from django.views.decorators.csrf import csrf_exempt
 
@@ -12,4 +10,5 @@ def snoop(request):
     if request.method == 'POST':
         print('Raw Data: "%s"' % request.body)
 
-    return HttpResponse("OK")
+
+    return JsonResponse({'client_response': 'ok'})
