@@ -17,12 +17,13 @@ from django.conf.urls import url
 from django.contrib import admin
 from django.urls import path
 
-from app.views import snoop, api_key, token_auth
+from app.views import snoop, api_key, token_auth, basic_auth
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('snoop/', snoop, name='snoop'),
     path('api_key/', api_key, name='api_key'),
     path('token_auth/', token_auth, name='token_auth'),
+    path('basic_auth/', basic_auth, name='basic_auth'),
 
 ]
