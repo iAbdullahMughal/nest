@@ -2,10 +2,12 @@ from django.http import HttpResponse, JsonResponse
 import json
 # Create your views here.
 from django.views.decorators.csrf import csrf_exempt
-
+import json
 
 @csrf_exempt
 def snoop(request):
+    print(json.dumps(request.headers))
+    print(request.method)
     if request.method == 'POST':
         print('Record_value_via_no_auth: "%s"' % request.body)
 
@@ -14,8 +16,8 @@ def snoop(request):
 
 @csrf_exempt
 def api_key(request):
-    print(request.headers)
-    print(request.body)
+    print(json.dumps(request.headers))
+    print(request.method)
     if request.method == 'POST':
         print('Raw Data: "%s"' % request.body)
 
@@ -24,6 +26,8 @@ def api_key(request):
 
 @csrf_exempt
 def token_auth(request):
+    print(json.dumps(request.headers))
+    print(request.method)
     if 'Authorization' not in request.headers and request.method == "POST":
         return HttpResponse(status=401)
     elif request.method == "POST":
