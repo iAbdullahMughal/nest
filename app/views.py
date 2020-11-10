@@ -52,4 +52,6 @@ def basic_auth(request):
     print(request.method)
     print(request.body)
     print("==============================")
+    if request.method == "POST":
+        print('Raw Data - basic auth: "%s"' % request.body)
     return JsonResponse({'client_response': 'ok'})

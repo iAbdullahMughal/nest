@@ -24,6 +24,7 @@ urlpatterns = [
     path('snoop/', snoop, name='snoop'),
     path('api_key/', api_key, name='api_key'),
     path('token_auth/', token_auth, name='token_auth'),
+    path('token_auth', token_auth, name='token_auth1'),
     path('basic_auth/', basic_auth, name='basic_auth'),
 
 ]
