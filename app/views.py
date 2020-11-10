@@ -14,6 +14,17 @@ def snoop(request):
 
 @csrf_exempt
 def api_key(request):
+    print(request.headers)
+    print(request.body)
+    if request.method == 'POST':
+        print('Raw Data: "%s"' % request.body)
+
+    return JsonResponse({'client_response': 'ok'})
+
+
+@csrf_exempt
+def token_auth(request):
+    print(request.headers)
     print(request.body)
     if request.method == 'POST':
         print('Raw Data: "%s"' % request.body)
