@@ -4,6 +4,8 @@ import json
 from django.views.decorators.csrf import csrf_exempt
 import json
 
+TOKEN_AUTH = "Bearer yHX1PzQA3n"
+
 
 @csrf_exempt
 def snoop(request):
@@ -35,7 +37,16 @@ def token_auth(request):
     if request.method == "POST":
         pass
     elif request.method == "GET":
-        pass
+        if 'Authorization' in request.headers:
+            __token_auth__ = request.headers["Authorization"]
+            if __token_auth__ == TOKEN_AUTH:
+                return JsonResponse({'client_response': 'ok'})
+            else:
+                # Failed to match Token ID
+                return HttpResponse(status=401)
+        else:
+            # Failed to get Token ID
+            return HttpResponse(status=401)
 
 
 @csrf_exempt
