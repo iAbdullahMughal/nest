@@ -9,33 +9,24 @@ TOKEN_AUTH = "Bearer yHX1PzQA3n"
 
 @csrf_exempt
 def snoop(request):
-    print(json.dumps(request.headers))
-    print(request.method)
     if request.method == 'POST':
-        print('Record_value_via_no_auth: "%s"' % request.body)
+        print('Raw Data - No auth: "%s"' % request.body)
 
     return JsonResponse({'client_response': 'ok'})
 
 
 @csrf_exempt
 def api_key(request):
-    print(json.dumps(request.headers))
-    print(request.method)
     if request.method == 'POST':
-        print('Raw Data: "%s"' % request.body)
+        print('Raw Data -- api key: "%s"' % request.body)
 
     return JsonResponse({'client_response': 'ok'})
 
 
 @csrf_exempt
 def token_auth(request):
-    print("=================================")
-    print(request.method)
-    print(request.headers)
-    print(request.body)
-    print("=================================")
     if request.method == "POST":
-        pass
+        print('Raw Data - token auth: "%s"' % request.body)
     elif request.method == "GET":
         if 'Authorization' in request.headers:
             __token_auth__ = request.headers["Authorization"]
@@ -43,10 +34,10 @@ def token_auth(request):
                 return JsonResponse({'client_response': 'ok'})
             else:
                 # Failed to match Token ID
-                return HttpResponse(status=401)
+                return HttpResponse(status=403)
         else:
             # Failed to get Token ID
-            return HttpResponse(status=401)
+            return HttpResponse(status=403)
 
 
 @csrf_exempt
