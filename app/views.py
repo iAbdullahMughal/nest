@@ -16,14 +16,17 @@ def snoop(request):
 
 @csrf_exempt
 def api_key(request):
-    print(request.headers)
     if request.method == 'POST':
-        print('Raw Data -- api key: "%s"' % request.body)
-    elif request.method == "GET":
-        print(request.headers)
-        print(request.body)
-        # print(request.m)
-    return JsonResponse({'client_response': 'ok'})
+        if "Encryption-Key" in request.headers:
+            encryption_key = request.headers["Encryption-Key"]
+            if encryption_key == "kTZEIDEV7gHXTh7b3JHonpDCvi3vjTmd":
+                print('Raw Data -- api key: "%s"' % request.body)
+            else:
+                return HttpResponse(status=403)
+        else:
+            return HttpResponse(status=403)
+    else:
+        return HttpResponse(status=403)
 
 
 @csrf_exempt
@@ -45,7 +48,6 @@ def token_auth(request):
 
 @csrf_exempt
 def basic_auth(request):
-
     if request.method == "POST":
         print('Raw Data - basic auth: "%s"' % request.body)
     elif request.method == "GET":
