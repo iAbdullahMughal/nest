@@ -22,9 +22,12 @@ from app.views import snoop, api_key, token_auth, basic_auth
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('snoop/', snoop, name='snoop'),
+    path('snoop', snoop, name='snoop1'),
     path('api_key/', api_key, name='api_key'),
+    path('api_key', api_key, name='api_key1'),
     path('token_auth/', token_auth, name='token_auth'),
     path('token_auth', token_auth, name='token_auth1'),
     path('basic_auth/', basic_auth, name='basic_auth'),
+    path('basic_auth', basic_auth, name='basic_auth1'),
 
 ]

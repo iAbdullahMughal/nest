@@ -2,7 +2,6 @@ from django.http import HttpResponse, JsonResponse
 import json
 # Create your views here.
 from django.views.decorators.csrf import csrf_exempt
-import json
 
 TOKEN_AUTH = "Bearer yHX1PzQA3n"
 
@@ -10,21 +9,20 @@ TOKEN_AUTH = "Bearer yHX1PzQA3n"
 @csrf_exempt
 def snoop(request):
     if request.method == 'POST':
-        print('Raw Data - No auth: "%s"' % json.dumps(request.body.decode("utf8"), indent=2))
+        print('Raw Data - No auth: "%s"' % request.body.decode("utf8"))
 
     return JsonResponse({'client_response': 'ok'})
 
 
 @csrf_exempt
 def api_key(request):
-    print("==============================")
-    print(request.headers)
-    print(request.method)
-    print(request.body)
-    print("==============================")
+
     if request.method == 'POST':
         print('Raw Data -- api key: "%s"' % request.body)
-
+    elif request.method == "GET":
+        print(request.headers)
+        print(request.body)
+        # print(request.m)
     return JsonResponse({'client_response': 'ok'})
 
 
@@ -47,11 +45,10 @@ def token_auth(request):
 
 @csrf_exempt
 def basic_auth(request):
-    print("==============================")
-    print(request.headers)
-    print(request.method)
-    print(request.body)
-    print("==============================")
+
     if request.method == "POST":
         print('Raw Data - basic auth: "%s"' % request.body)
+    elif request.method == "GET":
+        print(request.headers)
+        print(request.body)
     return JsonResponse({'client_response': 'ok'})
