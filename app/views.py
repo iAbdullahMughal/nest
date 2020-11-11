@@ -16,7 +16,7 @@ def snoop(request):
 
 @csrf_exempt
 def api_key(request):
-
+    print(request.headers)
     if request.method == 'POST':
         print('Raw Data -- api key: "%s"' % request.body)
     elif request.method == "GET":
