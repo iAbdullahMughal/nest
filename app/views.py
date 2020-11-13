@@ -35,6 +35,7 @@ def api_key(request):
 def token_auth(request):
     if request.method == "POST":
         print('Raw Data - token auth: "%s"' % request.body)
+        return HttpResponse(status=200)
     elif request.method == "GET":
         if 'Authorization' in request.headers:
             __token_auth__ = request.headers["Authorization"]
