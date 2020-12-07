@@ -1,4 +1,4 @@
-from django.http import HttpResponse, JsonResponse
+from django.http import HttpResponse, JsonResponse, HttpResponseServerError
 import json
 # Create your views here.
 from django.views.decorators.csrf import csrf_exempt
@@ -65,4 +65,4 @@ def basic_auth(request):
 def error_500(request):
     print(request.headers)
     print(request.body)
-    return HttpResponse(status=500)
+    return HttpResponseServerError()
