@@ -65,4 +65,5 @@ def basic_auth(request):
 def error_500(request):
     print(request.headers)
     print(request.body)
-    return HttpResponseServerError()
+    # return HttpResponseServerError()
+    return JsonResponse({'client_response': 'ok'})
