@@ -59,3 +59,10 @@ def basic_auth(request):
         print(request.headers)
         print(request.body)
     return JsonResponse({'client_response': 'ok'})
+
+
+@csrf_exempt
+def error_500(request):
+    print(request.headers)
+    print(request.body)
+    return HttpResponse(status=500)
