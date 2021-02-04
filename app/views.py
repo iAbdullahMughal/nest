@@ -51,8 +51,6 @@ def token_auth(request):
 
 @csrf_exempt
 def basic_auth(request):
-    print(request.headers)
-    print(request.body)
     if request.method == "POST":
         print('Raw Data - basic auth: "%s"' % request.body)
     elif request.method == "GET":
